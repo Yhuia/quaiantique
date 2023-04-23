@@ -1,0 +1,18 @@
+.menu_section_container_title {
+    margin-left: 3%;
+  }
+  
+  .menu_section_title {
+    
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  
+  
+  /* Pour les écrans ayant une largeur maximale de 768 pixels */
+@media screen and (max-width: 768px) {
+    .menu_section_title {
+      margin-bottom: 15px;
+    }
+  }
+  

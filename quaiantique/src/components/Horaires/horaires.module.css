@@ -1,0 +1,42 @@
+.hours_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+
+}
+.hours_day {
+  font-size: 16px;
+  font-weight: 600;
+  margin-right: 16px;
+}
+
+  .hours_open {
+    font-size: 16px;
+    font-weight: 400;
+    color: #4CAF50;
+  }
+  .hours_dayClose {
+    font-size: 16px;
+    font-weight: 400;
+    color: #F44336;
+  }
+
+
+  @media screen and (min-width: 600px) {
+    .hours_day {
+      margin-top: 4px;
+      margin-bottom: 4px;
+    }
+    .hours_open {
+      margin: 4px 0;
+    }
+    .hours_dayClose {
+      margin: 4px 0;
+    }
+}
+
+
+
+
+

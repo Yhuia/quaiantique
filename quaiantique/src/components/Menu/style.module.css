@@ -1,0 +1,71 @@
+.menu_global_container {
+    margin: 3%;
+  }
+  
+  .menu_section_title {
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  
+.menu_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .menu_titre {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .menu_description {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .menu_prix {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff8100;
+    text-align: center;
+  }
+  
+  /* Pour les écrans ayant une largeur maximale de 768 pixels */
+@media screen and (max-width: 768px) {
+    .menu_global_container {
+      margin-top: 20px;
+    }
+  
+    .menu_section_title {
+      margin-bottom: 15px;
+    }
+  
+    .menu_card {
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+  
+    .menu_titre {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+  
+    .menu_description {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+  
+    .menu_prix {
+      font-size: 20px;
+    }
+  }
+  
