@@ -22,7 +22,7 @@ export default function Horaires() {
 
   return (
     <div>
-        <h4>Nos Horaires d'ouvertures</h4>
+        <h4>{`Nos Horaires d'ouvertures`}</h4>
       {hours && hours.map((hour)=>(
         <div className={s.hours_container} key={hour.id} >
             <p className={s.hours_day}>{hour.jour_de_la_semaine}</p>

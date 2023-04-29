@@ -33,3 +33,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# fichier Authgardien vide pour le moment
+/src/components/AuthGardien/
+/src/components/AutthGardien/
