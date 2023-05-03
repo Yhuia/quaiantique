@@ -2,14 +2,22 @@ import React, { useEffect, useState } from 'react'
 import s from './style.module.css';
 import axios from 'axios';
 
-export default function PlatsForm({title,onClickEdit,onClickTrash,onSubmit}) {
+export default function PlatsForm({
+    title,
+    isEditable=true,
+    onClickEdit,
+    onClickTrash,
+    onSubmit,
+    plat}) {
     const [categories, setCategories] = useState([])
     const [formValues,setFormValues] = useState({
-        titre: '',
-        description:'',
-        prix:'',
-        id_categorie : ''
+        titre: plat ? plat.titre : '',
+        description:  plat ? plat.description :'',
+        prix:  plat ? plat.prix : '',
+        id_categorie : plat ? plat.id_categorie :''
     })
+    console.log(formValues.id_categorie)
+    
     function updateFormValue(e) {
         e.preventDefault()
         let value = e.target.value 
@@ -32,26 +40,31 @@ export default function PlatsForm({title,onClickEdit,onClickTrash,onSubmit}) {
         getCategorie()
     },[])
 
-  return (
-    <div>
-      <div>{title}</div>
+    const actionIcons = <>
         <div>
             {onClickEdit && <button onClick={onClickEdit}>Modifier</button>}
             {onClickTrash &&  <button onClick={onClickTrash}>Supprimer</button>}
         </div>
+    </>
+  return (
+    <div>
+    
+      <div>{title}</div>
+        {actionIcons}
       <form  className={s.form_container}>
         <div className={s.form_group}>
             <label  className={s.form_label} htmlFor='titre'>Titre</label>
-            <input onChange={updateFormValue} name='titre'  className={s.form_input} type='text' ></input>
+            <input value={formValues.titre} onChange={updateFormValue} name='titre'  className={s.form_input} type='text' ></input>
         </div>
         <div className={s.form_group}>
             <label  className={s.form_label} htmlFor='description'>Description</label>
-            <input onChange={updateFormValue} name='description'  className={s.form_input} type='text' ></input>
+            <input value={formValues.description} onChange={updateFormValue} name='description'  className={s.form_input} type='text' ></input>
         </div>
         <div className={s.form_group}>
             <label  className={s.form_label} htmlFor='prix'>Prix</label>
             {/* Accepte que chiffre de 0à9,decimal et , et . */}
             <input 
+                value={formValues.prix}
                 onChange={updateFormValue} 
                 name='prix'  
                 className={s.form_input} 
@@ -60,18 +73,19 @@ export default function PlatsForm({title,onClickEdit,onClickTrash,onSubmit}) {
                 ></input>
         </div>
         <select name="id_categorie" onChange={updateFormValue}>
-            <option value="" defaultValue>-- Choisir une catégorie --</option>
-            {categories && categories.map((categorie,index)=>(
+            <option value='' defaultValue>-- Choisir une catégorie --</option>
+            {categories && categories.map((categorie)=>(
                 <option key={categorie.id} value={categorie.id}>{categorie.nom}</option>
             ))}
             
         </select>
 
 
-        <button onClick={() => onSubmit(formValues)}>Envoyer</button>
-    </form>    
+        <button type='button' onClick={() => onSubmit(formValues)}>Envoyer</button>
+    </form> 
       
 
     </div>
   )
 }
+

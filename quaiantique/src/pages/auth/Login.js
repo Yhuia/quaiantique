@@ -16,7 +16,7 @@ export default function Login() {
     const onSubmit = (e)=>{
         e.preventDefault()
         console.log(credentials)
-        axios.post('http://localhost/quaiantique/users/login',credentials)
+        axios.post('http://localhost:8081/quaiantique/users/login',JSON.stringify(credentials) )
         .then(res=> console.log(res))
         .catch(error => console.log(error)) // voir ca de plus pres 
 
@@ -28,7 +28,7 @@ export default function Login() {
             <input name='email'  value={credentials.email} onChange={onChange} className={s.form_input} type='text' ></input>
         </div>
         <div className={s.form_group}>
-            <label className={s.form_label} htmlFor='motdepasse'  >Mot de passe</label>
+            <label className={s.form_label} htmlFor='password'  >Mot de passe</label>
             <input name='password' value={credentials.password} onChange={onChange} className={s.form_input} type='text' ></input>
         </div>
         <div className='form_group'>

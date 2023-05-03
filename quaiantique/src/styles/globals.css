@@ -9,7 +9,7 @@ h4{
 }
 
 a {
-    font-size: 14px;
+    font-size: 16px;
     color: #9b9b9b;
     text-decoration: none;
     margin-right: 16px;
@@ -20,9 +20,33 @@ a:hover {
     color: #fc8019;
   }
 
+p {
+    font-size: 20px;
+}
+
+button {
+    background-color: transparent;
+    border: 2px solid #fc8019;
+    color: #333;
+    font-size: 1.2rem;
+    padding: 0.6em 1.5em;
+    margin: 1%;
+    border-radius: 30px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+  }
+  
+button:hover {
+    background-color: #fc7f19ac;
+    border: 2px solid #fc7f19ac;
+    color: #fff;
+  }
+  
+  
 @media screen and (max-width: 768px) {
     h4 {
         font-size: 20px;
     }
 }
+
 

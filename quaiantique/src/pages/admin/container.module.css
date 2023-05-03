@@ -1,0 +1,17 @@
+
+@media only screen and (min-width: 768px) {
+
+.admin_container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 20px;
+}
+
+.admin_navbar{
+    grid-column: span 2;
+}
+
+.admin_section{
+    grid-column: span 10;
+}
+}

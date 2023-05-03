@@ -1,0 +1,48 @@
+import React from 'react'
+import PlatsForm from '@/components/PlatsForm/PlatsForm';
+
+export default function Idplat({plat}) {
+    // console.log(plat)
+    const isEditable = true;
+    return (
+    <div>
+      { <PlatsForm 
+            isEditable={isEditable} 
+            title={isEditable ? 'Edit Note' :plat.title}
+            plat={plat} 
+            // onClickEdit={()=>{setIsEditable(!isEditable)}}
+            // onClickTrash={()=>{supprimerNote(note)}}
+            // onSubmit={isEditable && submit}
+            />
+          }
+      
+    </div>
+  )
+}
+
+export async function getStaticProps(context) {
+  const poste = context.params.idplat
+  const data = await fetch('http://localhost/quaiantique/plats/read');
+  const dataPlats = await data.json();
+  const plats = dataPlats.plats;
+  console.log(plats)
+  const plat = plats.find(plat => ( plat.id.toString() === poste))
+  return {
+    props : {
+      plat:plat,
+    }
+  }
+}
+
+export async function getStaticPaths() {
+    const data = await fetch ('http://localhost/quaiantique/plats/read');
+    const dataPlats = await data.json();
+    const plats = dataPlats.plats;
+    const paths = plats.map((plat)=>( 
+      {params : {idplat: plat.id.toString()}}
+    ))
+    return {
+      paths,
+      fallback : false
+    }
+}

@@ -17,9 +17,9 @@ export default function Horaires() {
     setHours(hours)
     }
     useEffect(()=>{
-        hoursHoraire()
+      hoursHoraire()
     },[])
-
+    
   return (
     <div>
         <h4>{`Nos Horaires d'ouvertures`}</h4>
