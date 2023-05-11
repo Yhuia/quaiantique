@@ -28,7 +28,7 @@ export default function Login() {
               } else if (isLoggedIn && isAdmin === 1){
                 router.push('/admin');
               }
-            console.log(localStorage)
+            
         })
         .catch(error => console.log(error)) // voir ca de plus pres 
     }

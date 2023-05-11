@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PlatsForm from '@/components/PlatsForm/PlatsForm';
 import axios from 'axios';
 export default function Idplat({plat}) {
     const isEditable = true;
-    console.log(plat)
+    const [formValues, setFormValues] =  useState({
+      id: plat ? parseFloat(plat.id) : null,
+      titre: plat ? plat.titre : '',
+      description: plat ? plat.description : '',
+      prix: plat ? plat.prix : '',
+      id_categorie: plat ? plat.id_categorie : '',
+    });
     // je ne recois pas l'id
-    function submit(plat, formValues) {
-      const platId = plat.id;
-      console.log(plat)
-      const updatedFormValues = { ...formValues, "id" : platId};
-      console.log(updatedFormValues)
-      return axios.put(`http://localhost/quaiantique/plats/update`, updatedFormValues)
+    function submit(plat) {
+      return axios.put(`http://localhost/quaiantique/plats/update`, plat)
         .then(response => {
           console.log(response);
           return response.data;
@@ -26,6 +28,8 @@ export default function Idplat({plat}) {
             isEditable={isEditable} 
             title={isEditable ? 'Modifie ton plat' :plat.title}
             plat={plat} 
+            setFormValues={setFormValues}
+            formValues={formValues}
             // onClickEdit={()=>{setIsEditable(!isEditable)}}
             // onClickTrash={()=>{supprimerNote(note)}}
             onSubmit={isEditable && submit}
@@ -37,12 +41,11 @@ export default function Idplat({plat}) {
 }
 
 export async function getStaticProps(context) {
-  const poste = context.params.idplat
-  const data = await fetch('http://localhost/quaiantique/plats/read');
-  const dataPlats = await data.json();
-  const plats = dataPlats.plats;
+  const platId = context.params.idplat
+  const data = await fetch('http://localhost/quaiantique/plats/read').then(res => res.json());
+  const plats = data.plats;
   console.log(plats)
-  const plat = plats.find(plat => ( plat.id.toString() === poste))
+  const plat = plats.find(plat => ( plat.id.toString() === platId))
   return {
     props : {
       plat:plat,

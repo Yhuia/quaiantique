@@ -5,17 +5,20 @@ import axios from 'axios';
 export default function PlatsForm({
     title,
     isEditable,
+    setFormValues,
+    formValues,
     onClickEdit,
     onClickTrash,
     onSubmit,
     plat}) {
     const [categories, setCategories] = useState([])
-    const [formValues,setFormValues] = useState({
-        titre: plat ? plat.titre : '',
-        description:  plat ? plat.description :'',
-        prix:  plat ? plat.prix : '',
-        id_categorie : plat ? plat.id_categorie :''
-    })
+    // const [formValues,setFormValues] = useState({
+    //     id: plat ? parseFloat(plat.id) :null,
+    //     titre: plat ? plat.titre : '',
+    //     description:  plat ? plat.description :'',
+    //     prix:  plat ? plat.prix : '',
+    //     id_categorie : plat ? plat.id_categorie :''
+    // })
     console.log(formValues.id_categorie)
     
     function updateFormValue(e) {
