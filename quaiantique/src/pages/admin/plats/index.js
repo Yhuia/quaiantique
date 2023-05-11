@@ -5,19 +5,13 @@ import NavAdmin from '@/components/NavAdmin/NavAdmin';
 import s from '../container.module.css';
 
 export default function Index({dataPlat}) {
-  const [isEditable,setIsEditable] = useState(false)
+  const [isEditable,setIsEditable] = useState(true)
 
   const router = useRouter();
 
   function onClickEdit(plat) {
-    const platString = JSON.stringify(plat); 
     router.push({
       pathname: `/admin/plats/${plat.id}`,
-      query: { 
-        plat: platString, 
-        isEditable: setIsEditable(!isEditable)
-         
-      }
     });
   }
 
@@ -35,6 +29,7 @@ export default function Index({dataPlat}) {
           title= {plat.titre}
           description = {plat.description}
           prix = {plat.prix}
+          isEditable = {isEditable}
           onClickTrash = {() => alert('click')}
           onClickEdit = {()=>onClickEdit(plat)}
           ></Plats> 

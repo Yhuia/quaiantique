@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export default function PlatsForm({
     title,
-    isEditable=true,
+    isEditable,
     onClickEdit,
     onClickTrash,
     onSubmit,

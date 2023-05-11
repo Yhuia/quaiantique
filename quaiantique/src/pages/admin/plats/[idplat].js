@@ -1,18 +1,34 @@
 import React from 'react'
 import PlatsForm from '@/components/PlatsForm/PlatsForm';
-
+import axios from 'axios';
 export default function Idplat({plat}) {
-    // console.log(plat)
     const isEditable = true;
+    console.log(plat)
+    // je ne recois pas l'id
+    function submit(plat, formValues) {
+      const platId = plat.id;
+      console.log(plat)
+      const updatedFormValues = { ...formValues, "id" : platId};
+      console.log(updatedFormValues)
+      return axios.put(`http://localhost/quaiantique/plats/update`, updatedFormValues)
+        .then(response => {
+          console.log(response);
+          return response.data;
+        })
+        .catch(error => {
+          console.log(error);
+          throw error;
+        });
+    }
     return (
     <div>
       { <PlatsForm 
             isEditable={isEditable} 
-            title={isEditable ? 'Edit Note' :plat.title}
+            title={isEditable ? 'Modifie ton plat' :plat.title}
             plat={plat} 
             // onClickEdit={()=>{setIsEditable(!isEditable)}}
             // onClickTrash={()=>{supprimerNote(note)}}
-            // onSubmit={isEditable && submit}
+            onSubmit={isEditable && submit}
             />
           }
       
