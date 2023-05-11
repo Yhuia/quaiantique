@@ -6,6 +6,14 @@ import { useRouter } from 'next/router'
 export default function New (props) {
 
   const router = useRouter();
+
+  const [formValues,setFormValues] = useState({
+        titre: '',
+        description: '',
+        prix:  '',
+        id_categorie : ''
+    })
+    
   
   function addPlats (formValues) {
       axios.post('http://localhost/quaiantique/plats/create', formValues)
@@ -22,6 +30,8 @@ export default function New (props) {
       <PlatsForm 
         title={'Créer un plat'} 
         onSubmit={addPlats}
+        setFormValues={setFormValues}
+        formValues={formValues}
       >
       </PlatsForm>
     </div>

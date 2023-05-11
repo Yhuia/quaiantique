@@ -10,7 +10,7 @@ export default function PlatsForm({
     onClickEdit,
     onClickTrash,
     onSubmit,
-    plat}) {
+    }) {
     const [categories, setCategories] = useState([])
     // const [formValues,setFormValues] = useState({
     //     id: plat ? parseFloat(plat.id) :null,
@@ -19,7 +19,7 @@ export default function PlatsForm({
     //     prix:  plat ? plat.prix : '',
     //     id_categorie : plat ? plat.id_categorie :''
     // })
-    console.log(formValues.id_categorie)
+    
     
     function updateFormValue(e) {
         e.preventDefault()

@@ -3,7 +3,8 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/router';
 import NavAdmin from '@/components/NavAdmin/NavAdmin';
 import s from '../container.module.css';
-
+import axios
+ from 'axios';
 export default function Index({dataPlat}) {
   const [isEditable,setIsEditable] = useState(true)
 
@@ -14,7 +15,21 @@ export default function Index({dataPlat}) {
       pathname: `/admin/plats/${plat.id}`,
     });
   }
+  function onClickTrash(plat) {
+    alert(plat.id)
+     const idPlat = plat.id
+    return axios.delete(`http://localhost/quaiantique/plats/delete`, {data: {id: idPlat}})
+      .then(response => {
+        console.log(response);
+        return response.data;
+      })
+      .catch(error => {
+        console.log(error);
+        throw error;
+      });
+  }
 
+  
   console.log(dataPlat)
   return (
     <div className={s.admin_container}>
@@ -30,7 +45,7 @@ export default function Index({dataPlat}) {
           description = {plat.description}
           prix = {plat.prix}
           isEditable = {isEditable}
-          onClickTrash = {() => alert('click')}
+          onClickTrash = {()=>onClickTrash(plat)}
           onClickEdit = {()=>onClickEdit(plat)}
           ></Plats> 
           </div>
