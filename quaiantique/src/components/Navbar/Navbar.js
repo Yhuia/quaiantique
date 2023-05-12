@@ -8,8 +8,8 @@ import { useRouter } from 'next/router'
 export default function Navbar() {
   const router = useRouter()
 
-  const logoutbut = () => {
-    accountService.logout()
+  const logoutbut = async () => {
+    await accountService.logout()
     router.push('/');
     
   }
@@ -23,9 +23,10 @@ export default function Navbar() {
         </nav>
         <div>
           
-         
-            <button onClick={logoutbut}>Deconnexion</button>
-           <Logingroup></Logingroup>
+          {accountService.isLogged() ? 
+            <button onClick={logoutbut}>Deconnexion</button> :
+            <Logingroup></Logingroup>
+          }
           
           
         </div>

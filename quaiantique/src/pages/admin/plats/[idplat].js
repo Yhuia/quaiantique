@@ -23,18 +23,6 @@ export default function Idplat({plat}) {
         });
     }
 
-    function deleteId(plat) {
-          console(plat.id)
-      // return axios.delete(`http://localhost/quaiantique/plats/delete`, plat)
-      //   .then(response => {
-      //     console.log(response);
-      //     return response.data;
-      //   })
-      //   .catch(error => {
-      //     console.log(error);
-      //     throw error;
-      //   });
-    }
     return (
     <div>
       { <PlatsForm 
@@ -43,10 +31,8 @@ export default function Idplat({plat}) {
             plat={plat} 
             setFormValues={setFormValues}
             formValues={formValues}
-            // onClickEdit={()=>{setIsEditable(!isEditable)}}
-            // onClickTrash={()=>{supprimerNote(note)}}
             onSubmit={isEditable && submit}
-            onClickTrash={isEditable && deleteId}
+            // onClickTrash={isEditable && deleteId}
             />
           }
       
