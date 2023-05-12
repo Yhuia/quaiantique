@@ -1,10 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import s from './style.module.css';
 import axios from 'axios';
+import { ValidatorForm } from '@/services/ValidateForm/ValidatorForm';
+import InputError from '../InputError/InputError';
+
+
+const VALIDATIONFORM = {
+    titre : (value) =>{
+      return ValidatorForm.min(value,3) || ValidatorForm.max(value,55);
+    },
+    description : (value) => {
+        return ValidatorForm.min(value,3) || ValidatorForm.max(value,1000);
+    },
+}
 
 export default function PlatsForm({
     title,
-    isEditable,
     setFormValues,
     formValues,
     onClickEdit,
@@ -12,15 +23,16 @@ export default function PlatsForm({
     onSubmit,
     }) {
     const [categories, setCategories] = useState([])
-    // const [formValues,setFormValues] = useState({
-    //     id: plat ? parseFloat(plat.id) :null,
-    //     titre: plat ? plat.titre : '',
-    //     description:  plat ? plat.description :'',
-    //     prix:  plat ? plat.prix : '',
-    //     id_categorie : plat ? plat.id_categorie :''
-    // })
-    
-    
+    const [formErrors,setFormErrors] = useState({
+        titre : undefined, 
+        description: undefined
+    })
+    // validation des erreurs
+    function validate (fieldName, fieldValue) {
+        setFormErrors({...formErrors,[fieldName]:VALIDATIONFORM[fieldName](fieldValue)})       
+    }
+
+
     function updateFormValue(e) {
         e.preventDefault()
         let value = e.target.value 
@@ -32,8 +44,9 @@ export default function PlatsForm({
             ...formValues,
             [e.target.name]: value
         })
-        
+        validate(e.target.name, e.target.value)
     }
+    console.log(formErrors)
     async function getCategorie() {
         const dataCategory = await  axios.get('http://localhost/quaiantique/category/read')
         const categories = await dataCategory.data.category
@@ -56,15 +69,17 @@ export default function PlatsForm({
         {actionIcons}
       <form  className={s.form_container}>
         <div className={s.form_group}>
-            <label  className={s.form_label} htmlFor='titre'>Titre</label>
+            <label className={s.form_label} htmlFor='titre'>Titre</label>
             <input value={formValues.titre} onChange={updateFormValue} name='titre'  className={s.form_input} type='text' ></input>
+            <InputError msg={formErrors.titre}></InputError>
         </div>
         <div className={s.form_group}>
-            <label  className={s.form_label} htmlFor='description'>Description</label>
+            <label className={s.form_label} htmlFor='description'>Description</label>
             <input value={formValues.description} onChange={updateFormValue} name='description'  className={s.form_input} type='text' ></input>
+            <InputError msg={formErrors.description}></InputError>
         </div>
         <div className={s.form_group}>
-            <label  className={s.form_label} htmlFor='prix'>Prix</label>
+            <label className={s.form_label} htmlFor='prix'>Prix</label>
             {/* Accepte que chiffre de 0à9,decimal et , et . */}
             <input 
                 value={formValues.prix}

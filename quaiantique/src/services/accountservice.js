@@ -1,5 +1,5 @@
 import { setCookie, destroyCookie, parseCookies } from 'nookies';
-
+// gestion du token
 let saveToken =  (token,admin) =>{
     // await localStorage.setItem('token', token);
     setCookie(null, 'token', token, {

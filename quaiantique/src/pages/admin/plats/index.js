@@ -15,6 +15,7 @@ export default function Index({dataPlat}) {
       pathname: `/admin/plats/${plat.id}`,
     });
   }
+  // Delete du plat
   function onClickTrash(plat) {
     alert(plat.id)
      const idPlat = plat.id
