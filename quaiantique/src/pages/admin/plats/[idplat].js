@@ -27,7 +27,7 @@ export default function Idplat({plat}) {
     <div>
       { <PlatsForm 
             isEditable={isEditable} 
-            title={isEditable ? 'Modifie ton plat' :plat.title}
+            title={isEditable ? 'Modifie ton plat' : plat.title}
             plat={plat} 
             setFormValues={setFormValues}
             formValues={formValues}

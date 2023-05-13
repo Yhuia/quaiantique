@@ -9,6 +9,7 @@ export default function NavAdmin() {
         <div className={s.navAdmin_navlink} >
             <Link className={s.navAdmin_link} href={'/admin'}>Admin</Link>
             <Link className={s.navAdmin_link} href={'/admin/plats'}>Plats</Link>
+            <Link className={s.navAdmin_link} href={'/admin/formules'}>Formules</Link>
         </div>
     </>
   )

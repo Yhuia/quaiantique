@@ -36,11 +36,18 @@ button {
     cursor: pointer;
   }
   
-button:hover {
+button:not([disabled]):hover {
     background-color: #fc7f19ac;
     border: 2px solid #fc7f19ac;
     color: #fff;
   }
+button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: #ccc;
+    color: #ccc;
+  }
+
   
   
 @media screen and (max-width: 768px) {

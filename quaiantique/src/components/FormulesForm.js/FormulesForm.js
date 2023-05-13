@@ -14,15 +14,12 @@ const VALIDATIONFORM = {
     },
     prix : (value) =>{
         return ValidatorForm.numberValid(value,0) ;
-    },
-    id_categorie :(value) =>{
-        return ValidatorForm.numberValid(value,0)
     }
 
 }
 
 
-export default function PlatsForm({
+export default function FormulesForm({
     title,
     setFormValues,
     isEditable,
@@ -36,7 +33,6 @@ export default function PlatsForm({
         titre : isEditable ? undefined : "", 
         description: isEditable ? undefined : "",
         prix: isEditable ? undefined : "",
-        id_categorie : isEditable ? undefined : ""
     })
     console.log(formValues)
     // validation des erreurs => recuperation des erreurs 
@@ -64,14 +60,6 @@ export default function PlatsForm({
     }
     
     console.log(formErrors)
-    async function getCategorie() {
-        const dataCategory = await  axios.get('http://localhost/quaiantique/category/read')
-        const categories = await dataCategory.data.category
-        setCategories(categories)
-    }
-    useEffect(()=>{
-        getCategorie()
-    },[])
 
     const actionIcons = <>
         <div>
@@ -107,13 +95,6 @@ export default function PlatsForm({
                 type='text' 
                 ></input>
         </div>
-        <select name="id_categorie" onChange={updateFormValue}>
-            <option value='' defaultValue>-- Choisir une catégorie --</option>
-            {categories && categories.map((categorie)=>(
-                <option key={categorie.id} value={categorie.id}>{categorie.nom}</option>
-            ))}
-            
-        </select>
 
 
         <button disabled={hasError()}  type='button' onClick={() => onSubmit(formValues)}>Envoyer</button>

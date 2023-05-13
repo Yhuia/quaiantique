@@ -11,7 +11,7 @@ export default function menu({plats,categories,formules,menus}) {
         <h4 className={s.menu_section_title}>Nos Formules</h4>
 
             {formules.length >0 && formules.map((formule)=>(
-                <Formules key={formule.id} formule={formule} menus={menus}></Formules>
+                <Formules key={formule.id} formule={formule}></Formules>
             ))}
             
         </div>
@@ -39,15 +39,12 @@ export async function getStaticProps() {
     const formulesJson = await dataformules.json();
     const formules = formulesJson.formules;
 
-    const dataMenus = await fetch('http://localhost/quaiantique/menus/read');
-    const menusJson = await dataMenus.json();
-    const menus = menusJson.menu;
+   
     return {
         props : {
             plats:plats,
             categories:categories,
-            formules:formules,
-            menus:menus
+            formules:formules
         }
     }
 }
