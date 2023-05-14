@@ -28,7 +28,6 @@ export default function FormulesForm({
     onClickTrash,
     onSubmit,
     }) {
-    const [categories, setCategories] = useState([])
     const [formErrors,setFormErrors] = useState({
         titre : isEditable ? undefined : "", 
         description: isEditable ? undefined : "",

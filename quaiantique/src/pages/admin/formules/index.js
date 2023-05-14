@@ -37,7 +37,7 @@ export default function Index({dataFormules}) {
         <NavAdmin></NavAdmin>
       </div>
       <section className={s.admin_section}>
-        <button type='button' onClick={()=>{router.push('/admin/formules/New')}}>Ajouter d'une formule</button>
+        <button type='button' onClick={()=>{router.push('/admin/formules/New')}}>{"Ajouter d'une formule"}</button>
         {dataFormules.map((formules)=>(
           <div key={formules.id} >
           <Plats 
