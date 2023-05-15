@@ -14,6 +14,11 @@ export default function New (props) {
         heure_soir_ouverture:  "",
         heure_soir_fermeture:  "",
     })
+    
+    const [horaireMidiOuvNull, setHoraireMidiOuvNull] = useState(false)
+    const [horaireMidiFermNull, setHoraireMidiFermNull] = useState(false)
+    const [horaireSoirOuvNull, setHoraireSoirOuvNull] = useState(false)
+    const [horaireSoirFermNull, setHoraireSoirFermNull] = useState(false)
   
   function addFormules (formValues) {
       axios.post('http://localhost/quaiantique/hours/create', formValues)
@@ -32,6 +37,15 @@ export default function New (props) {
         onSubmit={addFormules}
         setFormValues={setFormValues}
         formValues={formValues}
+
+        horaireMidiOuvNull={horaireMidiOuvNull}
+        horaireMidiFermNull={horaireMidiFermNull}
+        horaireSoirOuvNull={horaireSoirOuvNull}
+        horaireSoirFermNull={horaireSoirFermNull}
+        setHoraireMidiFermNull={setHoraireMidiFermNull}
+        setHoraireSoirOuvNull={setHoraireSoirOuvNull}
+        setHoraireMidiOuvNull={setHoraireMidiOuvNull}
+        setHoraireSoirFermNull={setHoraireSoirFermNull}
       >
       </HoraireForm>
     </div>

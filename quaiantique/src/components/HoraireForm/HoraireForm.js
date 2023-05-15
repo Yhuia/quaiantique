@@ -9,12 +9,17 @@ export default function HoraireForm({
     onClickEdit,
     onClickTrash,
     onSubmit,
+    horaireMidiOuvNull,
+    horaireMidiFermNull,
+    horaireSoirOuvNull,
+    horaireSoirFermNull,
+    setHoraireMidiOuvNull,
+    setHoraireMidiFermNull,
+    setHoraireSoirOuvNull,
+    setHoraireSoirFermNull
+
     }) {
 
-    const [horaireMidiOuvNull, setHoraireMidiOuvNull] = useState(false)
-    const [horaireMidiFermNull, setHoraireMidiFermNull] = useState(false)
-    const [horaireSoirOuvNull, setHoraireSoirOuvNull] = useState(false)
-    const [horaireSoirFermNull, setHoraireSoirFermNull] = useState(false)
       
     function updateFormValue(e) {
         e.preventDefault()
@@ -23,19 +28,34 @@ export default function HoraireForm({
             ...formValues,
             [e.target.name]: value
         })
-        // validate(e.target.name, e.target.value)
     }
-    function HandleHoraireMidiOuvNull() {
-        setHoraireMidiOuvNull(!horaireMidiOuvNull)
+    function HandleHoraireMidiOuvNull(e) {
+        setHoraireMidiOuvNull(e.target.checked)
+        setFormValues({
+            ...formValues,
+            heure_midi_ouverture: e.target.checked ? "" : formValues.heure_midi_ouverture
+        })
     }
-    function HandleHoraireMidiFermNull() {
-        setHoraireMidiFermNull(!horaireMidiFermNull)
+    function HandleHoraireMidiFermNull(e) {
+        setHoraireMidiFermNull(e.target.checked)
+        setFormValues({
+            ...formValues,
+            heure_midi_fermeture: e.target.checked ? "" : formValues.heure_midi_fermeture
+        })
     }
-    function HandleHoraireSoirOuvNull() {
-        setHoraireSoirOuvNull(!horaireSoirOuvNull)
+    function HandleHoraireSoirOuvNull(e) {
+        setHoraireSoirOuvNull(e.target.checked)
+        setFormValues({
+            ...formValues,
+            heure_soir_ouverture: e.target.checked ? "" : formValues.heure_soir_ouverture
+        })
     }
-    function HandleHoraireSoirFermNull() {
-        setHoraireSoirFermNull(!horaireSoirFermNull)
+    function HandleHoraireSoirFermNull(e) {
+        setHoraireSoirFermNull(e.target.checked)
+        setFormValues({
+            ...formValues,
+            heure_soir_fermeture: e.target.checked ? "" : formValues.heure_soir_fermeture
+        })
     }
 
     const actionIcons = <>
@@ -62,11 +82,11 @@ export default function HoraireForm({
             <label className={s.form_label} htmlFor='heure_midi_ouverture'>{"Horaire d'ouverture - Midi"}</label>
             
             <div>
-                <input id='heureMidiOuverture' onClick={HandleHoraireMidiOuvNull} type='checkbox' value={formValues.heure_midi_ouverture}></input>
+                <input checked={horaireMidiOuvNull && true} id='heureMidiOuverture' onChange={HandleHoraireMidiOuvNull} onClick={HandleHoraireMidiOuvNull} type='checkbox' value={formValues.heure_midi_ouverture}></input>
                 <label htmlFor="heureMidiOuverture">Fermé</label>
             </div>
             {horaireMidiOuvNull ? 
-             <p>Pas d'Horaire d'ouverture à midi </p> :
+             <p>{"Pas d'Horaire d'ouverture à midi "}</p> :
             <input value={formValues.heure_midi_ouverture} onChange={updateFormValue} name='heure_midi_ouverture'  className={s.form_input} type='time' ></input>
             } 
         </div>
@@ -74,11 +94,11 @@ export default function HoraireForm({
         <div className={s.form_group}>
             <label className={s.form_label} htmlFor='heure_midi_fermeture'>Horaire de fermeture - Midi</label>
             <div>
-                <input id='heureMidiFermeture' onClick={HandleHoraireMidiFermNull} type='checkbox' value={formValues.heure_midi_fermeture}></input>
+                <input checked={horaireMidiFermNull && true} id='heureMidiFermeture' onChange={HandleHoraireMidiFermNull} onClick={HandleHoraireMidiFermNull} type='checkbox' value={formValues.heure_midi_fermeture}></input>
                 <label htmlFor="heureMidiFermeture">Fermé</label>
             </div>
             {horaireMidiFermNull ? 
-             <p>Pas d'Horaire de fermeture à midi </p> :
+             <p>{"Pas d'Horaire de fermeture à midi"} </p> :
             <input value={formValues.heure_midi_fermeture} onChange={updateFormValue} name='heure_midi_fermeture'  className={s.form_input} type='time' ></input>
             }
         </div>
@@ -86,11 +106,11 @@ export default function HoraireForm({
         <div className={s.form_group}>
             <label className={s.form_label} htmlFor='heure_soir_ouverture'>{"Horaire d'ouverture - Soir"}</label>
             <div>
-                <input id='heureSoirOuverture' onClick={HandleHoraireSoirOuvNull} type='checkbox' value={formValues.heure_soir_ouverture}></input>
+                <input checked={horaireSoirOuvNull && true} id='heureSoirOuverture' onChange={HandleHoraireSoirOuvNull} onClick={HandleHoraireSoirOuvNull} type='checkbox' value={formValues.heure_soir_ouverture}></input>
                 <label htmlFor="heureSoirOuverture">Fermé</label>
             </div>
             {horaireSoirOuvNull ? 
-             <p>Pas d'Horaire d'ouverture le soir </p> :
+             <p>{"Pas d'Horaire d'ouverture le soir"} </p> :
             <input value={formValues.heure_soir_ouverture} onChange={updateFormValue} name='heure_soir_ouverture'  className={s.form_input} type='time' ></input>
             }
         </div>
@@ -98,13 +118,14 @@ export default function HoraireForm({
         <div className={s.form_group}>
             <label className={s.form_label} htmlFor='heure_soir_fermeture'>{"Horaire de fermeture - Soir"}</label>
             <div>
-                <input id='heureSoirFermeture' onClick={HandleHoraireSoirFermNull} type='checkbox' value={formValues.heure_soir_fermeture}></input>
+                <input checked={horaireSoirFermNull && true} id='heureSoirFermeture' onChange={HandleHoraireSoirFermNull} onClick={HandleHoraireSoirFermNull} type='checkbox' value={formValues.heure_soir_fermeture}></input>
                 <label htmlFor="heureSoirFermeture">Fermé</label>
             </div>
             {horaireSoirFermNull ? 
-             <p>Pas d'Horaire de fermeture le soir </p> :
-            <input value={formValues.heure_soir_fermeture} onChange={updateFormValue} name='heure_soir_fermeture'  className={s.form_input} type='time' ></input>
+             <p>{"Pas d'Horaire de fermeture le soir"} </p> :
+             <input  value={formValues.heure_soir_fermeture} onChange={updateFormValue} name='heure_soir_fermeture'  className={s.form_input} type='time' ></input>
             }
+
         </div>
 
         <button   type='button' onClick={() => onSubmit(formValues)}>Envoyer</button>
