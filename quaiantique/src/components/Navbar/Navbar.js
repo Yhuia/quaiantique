@@ -24,8 +24,11 @@ export default function Navbar() {
         <div>
           
           {accountService.isLogged() ? 
-            <button onClick={logoutbut}>Deconnexion</button> :
-            <Logingroup></Logingroup>
+           <button onClick={logoutbut}>Deconnexion</button> :
+           <>
+           <Logingroup path ={'/auth/Login'} title={'Connexion'}></Logingroup>
+           <Logingroup path ={'/auth/Register'} title={'Inscription'}></Logingroup>
+           </>
           }
           
           

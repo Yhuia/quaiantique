@@ -34,6 +34,8 @@ export default function Login() {
     }
 
   return (
+    <>
+    <h4>Connexion</h4>
     <form onSubmit={onSubmit} className={s.form_container}>
         <div className={s.form_group}>
             <label  className={s.form_label} htmlFor='email'>Email</label>
@@ -48,5 +50,6 @@ export default function Login() {
         </div>
       
     </form>
+    </>
   )
 }
