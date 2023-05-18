@@ -20,7 +20,7 @@ export default function Login() {
         e.preventDefault()
         axios.post('http://localhost/quaiantique/users/login',credentials)
         .then(res=> {
-            accountService.saveToken(res.data.tokenConnect,res.data.admin)
+            accountService.saveToken(res.data.tokenConnect,res.data.admin,res.data.user)
             const isLoggedIn =  accountService.isLogged();
             const isAdmin =  accountService.isAdmin()
             if(isLoggedIn && isAdmin === 0){

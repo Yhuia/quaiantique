@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import s from './style.module.css';
 import Logingroup from '../Authentification/Logingroup';
 import { accountService } from '@/services/accountservice';
@@ -7,12 +7,21 @@ import { useRouter } from 'next/router'
 
 export default function Navbar() {
   const router = useRouter()
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  
   const logoutbut = async () => {
     await accountService.logout()
+    setIsLoggedIn(false)
     router.push('/');
     
   }
+  const checkLoggedIn = async () => {
+    const loggedIn = await accountService.isLogged()
+    setIsLoggedIn(loggedIn)
+  }
+  useEffect(()=>{
+    checkLoggedIn()
+  },[])
   console.log('salut',accountService.isLogged())
   return (
     <header className={s.header_container}>
@@ -23,7 +32,7 @@ export default function Navbar() {
         </nav>
         <div>
           
-          {accountService.isLogged() ? 
+          {isLoggedIn ? 
            <button onClick={logoutbut}>Deconnexion</button> :
            <>
            <Logingroup path ={'/auth/Login'} title={'Connexion'}></Logingroup>
