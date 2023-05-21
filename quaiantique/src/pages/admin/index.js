@@ -19,6 +19,7 @@ export default function Index() {
       return null;
     }
     setShouldRender(true)
+    
   }
 
   useEffect(() => {

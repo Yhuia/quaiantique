@@ -3,8 +3,8 @@ import Menu from '@/components/Menu/Menu';
 import React from 'react'
 import s from '@/styles/menu.module.css';
 
-export default function menu({plats,categories,formules,menus}) {
-    
+export default function menu({plats,categories,formules}) {
+
   return (
     <div>
         <div className={s.menu_section_container_title}>
@@ -38,6 +38,9 @@ export async function getStaticProps() {
     const dataformules = await fetch('http://localhost/quaiantique/formules/read');
     const formulesJson = await dataformules.json();
     const formules = formulesJson.formules;
+    const dataA = await fetch('http://localhost/quaiantique/allergies/read');
+    const dataAllergies = await dataA.json();
+
 
    
     return {
