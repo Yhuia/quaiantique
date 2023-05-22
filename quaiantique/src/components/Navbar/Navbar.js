@@ -34,10 +34,10 @@ export default function Navbar() {
           
           {isLoggedIn ? 
            <button onClick={logoutbut}>Deconnexion</button> :
-           <>
-           <Logingroup path ={'/auth/Login'} title={'Connexion'}></Logingroup>
-           <Logingroup path ={'/auth/Register'} title={'Inscription'}></Logingroup>
-           </>
+           <div className={s.header_auth_buttons}>
+            <Logingroup path ={'/auth/Login'} title={'Connexion'}></Logingroup>
+            <Logingroup path ={'/auth/Register'} title={'Inscription'}></Logingroup>
+           </div>
           }
           
           
