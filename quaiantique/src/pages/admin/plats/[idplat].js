@@ -1,8 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PlatsForm from '@/components/PlatsForm/PlatsForm';
 import axios from 'axios';
+import { accountService } from '@/services/accountservice';
+import { useRouter } from 'next/router'
+
 export default function Idplat({plat}) {
     const isEditable = true;
+    const router = useRouter();
     const [formValues, setFormValues] =  useState({
       id: plat ? parseFloat(plat.id) : null,
       titre: plat ? plat.titre : '',
@@ -10,6 +14,28 @@ export default function Idplat({plat}) {
       prix: plat ? plat.prix : '',
       id_categorie: plat ? plat.id_categorie : '',
     });
+    const [shouldRender, setShouldRender] = useState(false);
+    async function ProtectedPage() {
+      const isLoggedIn = await accountService.isLogged();
+      const isAdmin = await accountService.isAdmin()
+      if(!isLoggedIn){
+        await router.push('/auth/Login');
+        return null
+      } else if (isLoggedIn && isAdmin === 0){
+        await router.push('/account');
+        return null;
+      }
+      setShouldRender(true)
+      
+    }
+  
+    useEffect(() => {
+     async function checkProtected() {
+         await ProtectedPage()
+      }
+      checkProtected()
+      
+    }, [])
     // je ne recois pas l'id
     function submit(plat) {
       return axios.put(`http://localhost/backend_quai_antique/plats/update`, plat)
@@ -23,7 +49,7 @@ export default function Idplat({plat}) {
         });
     }
 
-    return (
+    return ( shouldRender &&
     <div>
       { <PlatsForm 
             isEditable={isEditable} 

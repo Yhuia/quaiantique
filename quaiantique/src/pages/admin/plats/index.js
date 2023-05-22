@@ -1,15 +1,39 @@
 import Plats from '@/components/Plat/Plats'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router';
 import NavAdmin from '@/components/NavAdmin/NavAdmin';
 import s from '../container.module.css';
-import axios
- from 'axios';
+import axios from 'axios';
+import { accountService } from '@/services/accountservice';
+
 export default function Index({dataPlat}) {
   const [isEditable,setIsEditable] = useState(true)
-
   const router = useRouter();
 
+  const [shouldRender, setShouldRender] = useState(false);
+  async function ProtectedPage() {
+    const isLoggedIn = await accountService.isLogged();
+    const isAdmin = await accountService.isAdmin()
+    if(!isLoggedIn){
+      await router.push('/auth/Login');
+      return null
+    } else if (isLoggedIn && isAdmin === 0){
+      await router.push('/account');
+      return null;
+    }
+    setShouldRender(true)
+    
+  }
+
+  useEffect(() => {
+   async function checkProtected() {
+       await ProtectedPage()
+    }
+    checkProtected()
+    
+  }, [])
+
+  
   function onClickEdit(plat) {
     router.push({
       pathname: `/admin/plats/${plat.id}`,
@@ -32,7 +56,7 @@ export default function Index({dataPlat}) {
 
   
   console.log(dataPlat)
-  return (
+  return ( shouldRender &&
     <div className={s.admin_container}>
       <div className={s.admin_navbar}>
         <NavAdmin></NavAdmin>
