@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 export default function Navbar() {
   const router = useRouter()
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  
+  const [isAdmin, setIsAdmin] = useState(false)
   const logoutbut = async () => {
     await accountService.logout()
     setIsLoggedIn(false)
@@ -18,6 +18,8 @@ export default function Navbar() {
   const checkLoggedIn = async () => {
     const loggedIn = await accountService.isLogged()
     setIsLoggedIn(loggedIn)
+    setIsAdmin(accountService.isAdmin())
+    
   }
   useEffect(()=>{
     checkLoggedIn()
@@ -30,17 +32,17 @@ export default function Navbar() {
             <Link className={s.header_link} href={'/menu'}>Menu</Link>
             <Link className={s.header_link}href={'/nosinformations'}>Nos informations</Link>
         </nav>
-        <div>
+        <div className={s.header_auth_buttons}>
           
           {isLoggedIn ? 
            <button onClick={logoutbut}>Deconnexion</button> :
-           <div className={s.header_auth_buttons}>
+           <>
             <Logingroup path ={'/auth/Login'} title={'Connexion'}></Logingroup>
             <Logingroup path ={'/auth/Register'} title={'Inscription'}></Logingroup>
-           </div>
+           </>
           }
-          
-          
+          { isLoggedIn && isAdmin === 1 && <Link className={s.header_link} href={'/admin'}><button>Admin</button></Link>}
+          { isLoggedIn && isAdmin === 0 && <Link className={s.header_link} href={'/account'}><button>Compte</button></Link>} 
         </div>
     </header>
   )

@@ -16,7 +16,7 @@ export default function New (props) {
     
   
   function addPlats (formValues) {
-      axios.post('http://localhost/quaiantique/plats/create', formValues)
+      axios.post('http://localhost/backend_quai_antique/plats/create', formValues)
       .then(() => {
         router.push('/admin/plats');;
       }).catch(error =>{

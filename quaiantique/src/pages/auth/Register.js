@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import s from './style.module.css';
 import axios from 'axios';
-import { accountService } from '@/services/accountservice';
-import { useRouter } from 'next/router'
 import Modal from '@/components/Modal/Modal';
 import InputError from '@/components/InputError/InputError';
 
 export default function Login() {
-    const router = useRouter()
+
     const [credentials, setCredentials] = useState({
         email : '',
         mot_de_passe :'' 
@@ -23,7 +21,7 @@ export default function Login() {
     }
     const onSubmit = (e)=>{
         e.preventDefault()
-        axios.post('http://localhost/quaiantique/users/create',credentials)
+        axios.post('http://localhost/backend_quai_antique/users/create',credentials)
         .then(res=> {
             if(res.status === 201){
                 setValidateuser(true)

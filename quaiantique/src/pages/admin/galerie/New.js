@@ -13,7 +13,7 @@ export default function New (props) {
     
   
   function addFormules (formValues) {
-      axios.post('http://localhost/quaiantique/galerie/create', formValues)
+      axios.post('http://localhost/backend_quai_antique/galerie/create', formValues)
       .then(() => {
         router.push('/admin/galerie');;
       }).catch(error =>{

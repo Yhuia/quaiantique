@@ -21,7 +21,7 @@ export default function Index({dataGalerie}) {
   function onClickTrash(galerie) {
     alert(galerie.id)
      const idgalerie = galerie.id
-    return axios.delete(`http://localhost/quaiantique/galerie/delete`, {data: {id: idgalerie}})
+    return axios.delete(`http://localhost/backend_quai_antique/galerie/delete`, {data: {id: idgalerie}})
       .then(response => {
         console.log(response);
         return response.data;
@@ -58,7 +58,7 @@ export default function Index({dataGalerie}) {
 }
 
 export async function getStaticProps() {
-  const data = await fetch('http://localhost/quaiantique/galerie/read');
+  const data = await fetch('http://localhost/backend_quai_antique/galerie/read');
   const dataGalerie = await data.json();
   const galeries = dataGalerie.images;
   

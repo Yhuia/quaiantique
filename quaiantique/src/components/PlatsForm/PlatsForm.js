@@ -65,7 +65,7 @@ export default function PlatsForm({
     
     console.log(formErrors)
     async function getCategorie() {
-        const dataCategory = await  axios.get('http://localhost/quaiantique/category/read')
+        const dataCategory = await  axios.get('http://localhost/backend_quai_antique/category/read')
         const categories = await dataCategory.data.category
         setCategories(categories)
     }

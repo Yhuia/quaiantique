@@ -19,7 +19,7 @@ export default function Index({dataPlat}) {
   function onClickTrash(plat) {
     alert(plat.id)
      const idPlat = plat.id
-    return axios.delete(`http://localhost/quaiantique/plats/delete`, {data: {id: idPlat}})
+    return axios.delete(`http://localhost/backend_quai_antique/plats/delete`, {data: {id: idPlat}})
       .then(response => {
         console.log(response);
         return response.data;

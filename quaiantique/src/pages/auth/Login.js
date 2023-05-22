@@ -18,7 +18,7 @@ export default function Login() {
     }
     const onSubmit = (e)=>{
         e.preventDefault()
-        axios.post('http://localhost/quaiantique/users/login',credentials)
+        axios.post('http://localhost/backend_quai_antique/users/login',credentials)
         .then(res=> {
             accountService.saveToken(res.data.tokenConnect,res.data.admin,res.data.user)
             const isLoggedIn =  accountService.isLogged();

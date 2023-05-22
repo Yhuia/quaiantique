@@ -16,7 +16,7 @@ export default function New (props) {
     
   
   function addFormules (formValues) {
-      axios.post('http://localhost/quaiantique/formules/create', formValues)
+      axios.post('http://localhost/backend_quai_antique/formules/create', formValues)
       .then(() => {
         router.push('/admin/formules');;
       }).catch(error =>{

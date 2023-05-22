@@ -21,7 +21,7 @@ export default function New (props) {
     const [horaireSoirFermNull, setHoraireSoirFermNull] = useState(false)
   
   function addFormules (formValues) {
-      axios.post('http://localhost/quaiantique/hours/create', formValues)
+      axios.post('http://localhost/backend_quai_antique/hours/create', formValues)
       .then(() => {
         router.push('/admin/horaires');;
       }).catch(error =>{

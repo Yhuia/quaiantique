@@ -12,7 +12,7 @@ export default function Idplat({plat}) {
     });
     // je ne recois pas l'id
     function submit(plat) {
-      return axios.put(`http://localhost/quaiantique/plats/update`, plat)
+      return axios.put(`http://localhost/backend_quai_antique/plats/update`, plat)
         .then(response => {
           console.log(response);
           return response.data;
@@ -42,7 +42,7 @@ export default function Idplat({plat}) {
 
 export async function getStaticProps(context) {
   const platId = context.params.idplat
-  const data = await fetch('http://localhost/quaiantique/plats/read').then(res => res.json());
+  const data = await fetch('http://localhost/backend_quai_antique/plats/read').then(res => res.json());
   const plats = data.plats;
   console.log(plats)
   const plat = plats.find(plat => ( plat.id.toString() === platId))
@@ -54,7 +54,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-    const data = await fetch ('http://localhost/quaiantique/plats/read');
+    const data = await fetch ('http://localhost/backend_quai_antique/plats/read');
     const dataPlats = await data.json();
     const plats = dataPlats.plats;
     const paths = plats.map((plat)=>( 

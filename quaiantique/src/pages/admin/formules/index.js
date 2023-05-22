@@ -18,7 +18,7 @@ export default function Index({dataFormules}) {
   function onClickTrash(formules) {
     alert(formules.id)
      const idFormules = formules.id
-    return axios.delete(`http://localhost/quaiantique/formules/delete`, {data: {id: idFormules}})
+    return axios.delete(`http://localhost/backend_quai_antique/formules/delete`, {data: {id: idFormules}})
       .then(response => {
         console.log(response);
         return response.data;
@@ -56,7 +56,7 @@ export default function Index({dataFormules}) {
 }
 
 export async function getStaticProps() {
-  const data = await fetch('http://localhost/quaiantique/formules/read');
+  const data = await fetch('http://localhost/backend_quai_antique/formules/read');
   const dataFormules = await data.json();
   const formules = dataFormules.formules;
   console.log(formules)

@@ -13,7 +13,7 @@ export default function Idformules({formule}) {
     });
     // je ne recois pas l'id
     function submit(formule) {
-      return axios.put(`http://localhost/quaiantique/formules/update`, formule)
+      return axios.put(`http://localhost/backend_quai_antique/formules/update`, formule)
         .then(response => {
           console.log(response);
           return response.data;
@@ -43,7 +43,7 @@ export default function Idformules({formule}) {
 
 export async function getStaticProps(context) {
   const formuleId = context.params.idformules
-  const data = await fetch('http://localhost/quaiantique/formules/read').then(res => res.json());
+  const data = await fetch('http://localhost/backend_quai_antique/formules/read').then(res => res.json());
   const formules = data.formules;
   console.log(formules)
   const formule = formules.find(formule => ( formule.id.toString() === formuleId))
@@ -55,7 +55,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-    const data = await fetch ('http://localhost/quaiantique/formules/read');
+    const data = await fetch ('http://localhost/backend_quai_antique/formules/read');
     const dataformules = await data.json();
     const formules = dataformules.formules;
     const paths = formules.map((formule)=>( 

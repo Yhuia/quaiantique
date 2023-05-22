@@ -38,7 +38,7 @@ export default function Idhoraire({horaire}) {
 
     // je ne recois pas l'id
     function submit(horaire) {
-      return axios.put(`http://localhost/quaiantique/hours/update`, horaire)
+      return axios.put(`http://localhost/backend_quai_antique/hours/update`, horaire)
         .then(response => {
           console.log(response);
           return response.data;

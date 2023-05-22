@@ -33,7 +33,7 @@ console.log(allergies)
     };
 
     await axios
-      .patch('http://localhost/quaiantique/users/update', data)
+      .patch('http://localhost/backend_quai_antique/users/update', data)
       .then((response) => {
         console.log(response.data);
         setDataUser(response.data)
