@@ -45,6 +45,10 @@
     align-items: center;
     margin-left: auto;
   }
+  .header_auth_buttons {
+    display: flex;
+    gap: 10px;
+  }
   
   .header_cta_button {
     font-size: 16px;
@@ -78,6 +82,11 @@
     .main_content {
       margin-top: 6%;
     }
+    .header_auth_buttons {
+      display: block;
+      gap: 0px;
+    }
+    
   }
   
   

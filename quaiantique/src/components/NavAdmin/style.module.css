@@ -1,0 +1,21 @@
+.navAdmin_navlink{
+    display: flex;
+    flex-direction: column;
+}
+
+.navAdmin_link {
+    font-size: 1.4em;
+    color: #9b9b9b;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+    padding: 2% 0;
+}
+  
+.navAdmin_link:hover {
+    color: #fc8019;
+}
+
+@media only screen and (min-width: 768px) {
+
+
+}

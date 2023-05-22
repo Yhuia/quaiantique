@@ -9,7 +9,7 @@ h4{
 }
 
 a {
-    font-size: 14px;
+    font-size: 16px;
     color: #9b9b9b;
     text-decoration: none;
     margin-right: 16px;
@@ -20,9 +20,48 @@ a:hover {
     color: #fc8019;
   }
 
+p {
+    font-size: 20px;
+}
+button {
+  background-color: transparent;
+  border: 2px solid #fc8019;
+  color: #333;
+  font-size: 1.1rem;
+  padding: 0.4em 1em;
+  margin: 1%;
+  border-radius: 30px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+button:not([disabled]):hover {
+  background-color: #fc7f19ac;
+  border: 2px solid #fc7f19ac;
+  color: #fff;
+}
+button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: #ccc;
+  color: #ccc;
+}
+
+  
+  
 @media screen and (max-width: 768px) {
     h4 {
         font-size: 20px;
     }
+    button {
+      border: 0px solid #fc8019;
+      font-weight: bold;
+      font-size: 0.9rem;
+      padding: 0.1em 0.5em;
+      margin: 2% 0%;
+    }
+    
+  
 }
+
 

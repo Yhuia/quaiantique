@@ -1,13 +1,12 @@
 import React from 'react'
 
 
-export default function Plats({title,description,prix,onClickTrash,onClickEdit}) {
+export default function GalerieAdmin({title,url,onClickTrash,onClickEdit}) {
   return (
     <>
       <div>
         <p>{title}</p>
-        <p>{description}</p>
-        <p>{prix}</p>
+        <img src={`${url}`}></img>
         <button onClick={onClickTrash}>Supprimer</button>
         <button onClick={onClickEdit}>Modifier</button>
       </div>

@@ -2,6 +2,8 @@ import React from 'react'
 import Image from 'next/image'
 import s from './style.module.css';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import Link from 'next/link';
+
 
 export default function Accueil() {
   return (
@@ -17,7 +19,7 @@ export default function Accueil() {
             >
             </Image>
         </div>
-        
+        <Link href={'/reservation'}><button>Réserve une table</button></Link>
         <div className={s.home_container}>  
             <hr className={s.home_hr}></hr>
             <h4>Découvrez le Quai Antique</h4>

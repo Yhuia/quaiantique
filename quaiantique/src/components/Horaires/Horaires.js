@@ -4,7 +4,7 @@ import s from './horaires.module.css';
 export default function Horaires() {
     const [hours, setHours] = useState([])
     async function hoursHoraire () {
-        const dataHours = await fetch('http://localhost/quaiantique/hours/read');
+        const dataHours = await fetch('http://localhost/backend_quai_antique/hours/read');
         const jsonHours = await dataHours.json();
     // on supprime les secondes grâce à slice et join
         const hours = jsonHours.horaires.map(hour =>({
@@ -17,9 +17,9 @@ export default function Horaires() {
     setHours(hours)
     }
     useEffect(()=>{
-        hoursHoraire()
+      hoursHoraire()
     },[])
-
+    
   return (
     <div>
         <h4>{`Nos Horaires d'ouvertures`}</h4>
